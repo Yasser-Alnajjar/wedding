@@ -2,7 +2,6 @@
 const start = new Date("2026-06-14T00:00:00").getTime();
 const target = new Date("2026-07-10T16:00:00").getTime();
 const totalSpan = target - start;
-
 const els = {
   d: document.getElementById("days"),
   h: document.getElementById("hours"),
@@ -13,11 +12,6 @@ const els = {
 };
 const pad = (n, l = 2) => String(n).padStart(l, "0");
 let lastMinute = -1;
-console.log({
-  start,
-  target,
-  totalSpan,
-});
 function tick() {
   const now = Date.now();
   const diff = target - now;
@@ -187,8 +181,7 @@ function firework(x, y, colors) {
   }
 }
 function drawFW() {
-  fctx.fillStyle = "rgba(11,6,18,0.18)";
-  fctx.fillRect(0, 0, fw.width, fw.height);
+  fctx.clearRect(0, 0, fw.width, fw.height);
   fireworks.forEach((p) => {
     p.age++;
     p.x += p.vx;

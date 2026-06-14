@@ -30,6 +30,19 @@ body {
 body {
   font-family: "Cairo", sans-serif;
   color: var(--ivory);
+  background: var(--bg-1);
+  min-height: 100vh;
+  position: relative;
+  text-align: center;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
   background:
     radial-gradient(
       ellipse at 20% 10%,
@@ -47,11 +60,6 @@ body {
       var(--bg-2) 45%,
       var(--bg-1) 100%
     );
-  background-attachment: fixed;
-  min-height: 100vh;
-  position: relative;
-  text-align: center;
-  overflow-x: hidden;
 }
 
 /* canvases & layers */
