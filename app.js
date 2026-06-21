@@ -1,7 +1,24 @@
 /* ===== Countdown ===== */
-const start = new Date("2026-06-14T00:00:00").getTime();
-const target = new Date("2026-07-10T16:00:00").getTime();
+const start = new Date("2026-06-21T00:00:00").getTime();
+const date = new Date("2026-07-09T00:00:00");
+const target = date.getTime();
 const totalSpan = target - start;
+let celebrated = false;
+const dateText = date.toLocaleDateString("ar-EG", {
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+});
+
+const dayText = date.toLocaleDateString("ar-EG", {
+  weekday: "long",
+});
+
+document.getElementById("dateChip").innerHTML = `
+    <span>${dateText}</span>
+    <span class="sep"></span>
+    <span>${dayText}</span>
+  `;
 const els = {
   d: document.getElementById("days"),
   h: document.getElementById("hours"),
@@ -12,6 +29,7 @@ const els = {
 };
 const pad = (n, l = 2) => String(n).padStart(l, "0");
 let lastMinute = -1;
+
 function tick() {
   const now = Date.now();
   const diff = target - now;
@@ -21,10 +39,6 @@ function tick() {
     els.h.textContent = "00";
     els.m.textContent = "00";
     els.s.textContent = "00";
-
-    els.fill.style.width = "100%";
-    els.pt.textContent = "١٠٠٪ وصل يوم الفرح";
-
     celebrate();
     return;
   }
@@ -46,9 +60,6 @@ function tick() {
   const pct =
     totalSpan > 0 ? Math.max(0, Math.min(100, (elapsed / totalSpan) * 100)) : 0;
 
-  els.fill.style.width = `${pct.toFixed(2)}%`;
-  els.pt.textContent = `${pct.toFixed(1)}٪ اقتربنا من يوم الفرح`;
-
   // minute-based trigger optimization (no drift issues)
   if (m !== lastMinute && lastMinute !== -1) {
     burstConfetti(40);
@@ -66,7 +77,18 @@ function setNum(el, val) {
 }
 tick();
 setInterval(tick, 1000);
+/* ===== Celebration ===== */
 
+function celebrate() {
+  if (celebrated) return;
+  celebrated = true;
+  document.getElementById("celebrate").classList.add("show");
+  const interval = setInterval(() => {
+    launchShow(4);
+    burstConfetti(120);
+  }, 900);
+  setTimeout(() => clearInterval(interval), 12000);
+}
 /* ===== Particles ===== */
 const pc = document.getElementById("particles");
 const pctx = pc.getContext("2d");
@@ -261,19 +283,6 @@ function drawCF() {
   requestAnimationFrame(drawCF);
 }
 drawCF();
-
-/* ===== Celebration ===== */
-let celebrated = false;
-function celebrate() {
-  if (celebrated) return;
-  celebrated = true;
-  document.getElementById("celebrate").classList.add("show");
-  const interval = setInterval(() => {
-    launchShow(4);
-    burstConfetti(120);
-  }, 900);
-  setTimeout(() => clearInterval(interval), 12000);
-}
 
 /* ===== Music ===== */
 const audio = document.getElementById("audio");

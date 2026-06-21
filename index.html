@@ -97,11 +97,7 @@
     <h1 class="title">💍 العد التنازلي ليوم الفرح 💍</h1>
     <p class="subtitle">كل يوم يقربنا من أجمل لحظة</p>
 
-    <div class="date-chip">
-      <span>10 يوليو 2026</span>
-      <span class="sep"></span>
-      <span>يوم الجمعة</span>
-    </div>
+    <div class="date-chip" id="dateChip"></div>
 
     <div class="timer-wrap">
       <div class="rings" aria-hidden="true">
@@ -128,16 +124,6 @@
       </div>
     </div>
 
-    <div class="progress">
-      <div class="bar">
-        <div class="fill" id="fill"></div>
-      </div>
-      <div class="meta">
-        <span id="progressText">٠٪ اقتربنا من يوم الفرح</span>
-        <span>يوم الفرح</span>
-      </div>
-    </div>
-
     <div class="quote">
       في كل ثانية تمر، يكتب القدر سطراً جديداً من قصة حبٍّ بدأت بنظرة، وتُتوَّج بوعدٍ أبدي تحت سماءٍ من ذهب.
     </div>
@@ -151,10 +137,11 @@
 
   <!-- music: soft ambient loop -->
   <audio id="audio" loop preload="none">
-    <source src="https://njwagbcbljfyqapntvcf.supabase.co/storage/v1/object/public/audio/Anisa%20Rouhi.mp3" type="audio/mpeg">
+    <source src="https://njwagbcbljfyqapntvcf.supabase.co/storage/v1/object/public/audio/Anisa%20Rouhi.mp3"
+      type="audio/mpeg">
   </audio>
 
-  <script defer src="./app.js"></script>
+  <script src="./app.js"></script>
 
 </body>
 
